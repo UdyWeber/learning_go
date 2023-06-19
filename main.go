@@ -8,4 +8,5 @@ func main() {
 	// Cause their names are in Capital letters and the 2 files have the same package name
 	InitialFunctionsRunner()
 	exercises.BeginnerExercisesRunner()
+	exercises.BasicExercisesRunner()
 }

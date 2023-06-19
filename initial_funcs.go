@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"runtime"
+)
 
 // Swapping numerical variables in Go
 func GoSwap() {
@@ -80,6 +83,51 @@ func TypesForStrings() {
 	println("Raw string:", raw_string)
 }
 
+func GetStringBytes(some_string string) {
+	x := []byte(some_string)
+	fmt.Printf("Bytes for %v are: %v\n", some_string, x)
+
+	for _, letter := range x {
+		// Printing for each letter it's Value Type Unicode and HEX
+		fmt.Printf("%v - %T - %#U - %#x\n", letter, letter, letter, letter)
+	}
+}
+
+func GetOSInfo() {
+	fmt.Printf("Using OS: %v\n", runtime.GOOS)
+	fmt.Printf("Wiht Processor: %v\n", runtime.GOARCH)
+}
+
+func NumericSystems() {
+	number := 2341
+	// Printing Decimal / Binary / HEX of number
+	fmt.Printf("Decimal: %d\nBinary: %b\nHex: %#x\n", number, number, number)
+}
+
+func ExampleConstants() {
+	// Consts can have a Type but if we don't give it a Type it decuses the type when the variable is called
+	// As you can see below we define x = 10 that normally would be a int/usigned but we give it to a float and it works
+	// Cause the compiler deduces 10 as a float, but if we used a var int instead it wouldn't work
+
+	const x = 10
+	var y float64 = x
+	fmt.Printf("%v - %T\n", y, y)
+}
+
+func IotasExample() {
+	// Basically consts that are not initialized with values
+	// Copy the same operation from the last Const initialized
+	// And as Iota changes it value every time that it is called
+	const (
+		_ = iota
+		KB = 1 << (iota * 10)
+		MB
+		GB
+		TB
+	)
+	fmt.Printf("Iota KB: %v\nIota MB: %v\nIota GB: %v\nIota TB: %v\n", KB, MB, GB, TB)
+}
+
 func InitialFunctionsRunner() {
 	StringTests()
 	GoSwap()
@@ -87,4 +135,9 @@ func InitialFunctionsRunner() {
 	PritnPackageVariable()
 	ZeroValuesForTypes()
 	TypesForStrings()
+	GetStringBytes("Jolestest")
+	GetOSInfo()
+	NumericSystems()
+	ExampleConstants()
+	IotasExample()
 }
